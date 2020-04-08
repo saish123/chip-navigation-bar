@@ -24,6 +24,7 @@ internal class HorizontalMenuItemView @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : MenuItemView(context, attrs) {
 
+    private var textViewVisibility: Boolean = false
     private val title by lazy { findViewById<TextView>(R.id.cbn_item_title) }
     private val icon by lazy { findViewById<BadgeImageView>(R.id.cnb_item_icon) }
     private val container by lazy { findViewById<View>(R.id.cbn_item_internal_container) }
@@ -32,19 +33,21 @@ internal class HorizontalMenuItemView @JvmOverloads constructor(
     init {
         View.inflate(getContext(), R.layout.cnb_horizontal_menu_item, this)
         layoutParams = LayoutParams(0, WRAP_CONTENT, 1F)
+
     }
 
     override fun bind(item: MenuItem) {
         id = item.id
         isEnabled = item.enabled
         item.menuStyle.textAppearance?.let(title::setTextAppearance)
+
         title.text = item.title
         title.setTextColor(item.textColor)
         title.setColorStateListAnimator(
             color = item.iconColor,
             unselectedColor = item.menuStyle.unselectedColor
         )
-
+        textViewVisibility = item.menuStyle.textVisibility
         icon.layoutParams.width = item.menuStyle.iconSize
         icon.layoutParams.height = item.menuStyle.iconSize
         icon.setImageResource(item.icon)
@@ -64,6 +67,10 @@ internal class HorizontalMenuItemView @JvmOverloads constructor(
             setTint(Color.BLACK)
         }
         container.setCustomRipple(containerBackground, mask)
+
+        if (textViewVisibility) {
+            updateTitleVisibility(View.VISIBLE)
+        }
     }
 
     override fun showBadge(count: Int) {
@@ -102,7 +109,7 @@ internal class HorizontalMenuItemView @JvmOverloads constructor(
                     weight = 0F
                 }
             }
-            title.visibility = View.VISIBLE
+            updateTitleVisibility(View.VISIBLE)
         } else {
             if (isPortrait && childCollapse) {
                 updateLayoutParams<LinearLayout.LayoutParams> {
@@ -110,8 +117,14 @@ internal class HorizontalMenuItemView @JvmOverloads constructor(
                     weight = 1F
                 }
             }
-            title.visibility = View.GONE
+            if (!textViewVisibility) {
+                updateTitleVisibility(View.GONE)
+            }
         }
+    }
+
+    private fun updateTitleVisibility(visibility: Int) {
+        title.visibility = visibility
     }
 
 }

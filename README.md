@@ -92,6 +92,7 @@ menu.showBadge(R.id.settings, 10000)
 | `cnb_iconTintMode`|`PorterDuff.Mode` to apply the color. Possible values: [src_over, src_in, src_atop, multiply, screen]|`null`|
 | `cnb_textColor`|color used for the label on selected state|same color used for `cnb_iconColor`|
 | `cnb_backgroundColor`|color used for the chip background|same color used for `cnb_iconColor` with 15% alpha
+| `cnb_textVisibility`|Control menu items text visibility|false
 
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android"

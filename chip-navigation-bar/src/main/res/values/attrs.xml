@@ -12,12 +12,13 @@
             <enum name="horizontal" value="0" />
             <enum name="vertical" value="1" />
         </attr>
-
         <attr name="cnb_badgeColor" format="color" />
         <attr name="cnb_unselectedColor" format="color" />
         <attr name="cnb_radius" format="dimension" />
         <attr name="cnb_textAppearance" format="reference" />
         <attr name="cnb_iconSize" format="dimension" />
+        <attr name="cnb_textVisibility" format="boolean" />
+
     </declare-styleable>
 
     <declare-styleable name="ChipMenuItem">

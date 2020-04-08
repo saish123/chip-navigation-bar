@@ -12,10 +12,10 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="42sp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="36dp"/>
+        android:layout_marginTop="36dp"
+        android:textColor="@color/white"
+        android:textSize="42sp" />
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/bottom_menu"
@@ -28,6 +28,7 @@
         app:cnb_addLeftInset="true"
         app:cnb_addRightInset="true"
         app:cnb_menuResource="@menu/test"
-        app:cnb_orientationMode="horizontal" />
+        app:cnb_orientationMode="horizontal"
+        app:cnb_textVisibility="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
